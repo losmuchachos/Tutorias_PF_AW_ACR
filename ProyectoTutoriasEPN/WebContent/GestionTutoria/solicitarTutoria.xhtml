@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Solicitar Tutoria</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet name="estilo.css"></h:outputStylesheet>
+	<div align="center">
+		<h2>
+			<font color="#000000"><em><font
+					face="Geneva, Arial, Helvetica, sans-serif" size="5">Solicitar
+						una Tutoria </font> </em> </font>
+		</h2>
+	</div>
+	<h:form id="formTutorias">
+		<p:menubar>
+			<p:submenu label="Gestion Tutoria" icon="ui-icon-contact"
+				style="width:auto;">
+				<p:menuitem value="Solicitar Tutoria"
+					url="/GestionTutoria/solicitarTutoria.jsf" icon="ui-icon-document"
+					style="width:auto;" />
+				<p:menuitem value="Listar Tutoria"
+					url="/GestionTutoria/listarSolicitudes.jsf" icon="ui-icon-bookmark"
+					style="width:auto;" />
+			</p:submenu>
+			<p:submenu label="Gestionar Usuario" icon="ui-icon-person"
+				style="width:auto;">
+			</p:submenu>
+			<p:submenu label="Gestionar Departamento" icon="ui-icon-person"
+				style="width:auto;">
+			</p:submenu>
+		</p:menubar>
+
+		<h:panelGrid columns="3">
+			<h:outputLabel> Fecha de la Tutoria: </h:outputLabel>
+			<p:calendar for="fechaTutoria" id="fechaTutoria" pattern="dd-mm-yyyy"
+				showOn="button" required="true"
+				value="#{solicitarTutoriaBean.tutoria.fecha}">
+			</p:calendar>
+			<p:message for="fechaTutoria" display="icon" />
+			<h:outputLabel> Hora de Inicio: </h:outputLabel>
+			<p:calendar for="horaInicio" id="horaInicio" pattern="HH:mm:ss"
+				timeOnly="true" value="#{solicitarTutoriaBean.horaIni}" required="true">
+				<!-- 				  <f:convertDateTime pattern="HH:mm:ss"/>  -->
+			</p:calendar>
+			<p:message for="horaInicio" display="icon" />
+			<h:outputLabel> Hora de Fin: </h:outputLabel>
+			<p:calendar for="horaFin" id="horaFin" pattern="HH:mm:ss"
+				timeOnly="true" value="#{solicitarTutoriaBean.horaFin}" required="true">
+				<!-- 				  <f:convertDateTime pattern="hh:mm:ss"/>  -->
+			</p:calendar>
+			<p:message for="horaFin" display="icon" />
+
+			<h:outputLabel> Profesor: </h:outputLabel>
+			<p:selectOneMenu id="combo"
+				value="#{solicitarTutoriaBean.profesor.id}">
+				<f:selectItem itemLabel="-Seleccione profesor-" itemValue="" />
+				<f:selectItems value="#{solicitarTutoriaBean.profesores}" var="prof"
+					itemLabel="#{prof.nombre}" itemValue="#{prof.id}" />
+			</p:selectOneMenu>
+		</h:panelGrid>
+
+		<h:panelGrid columns="2">
+			<h:outputLabel> Tema: </h:outputLabel>
+			<p:inputTextarea for="tema" id="tema" required="true" rows="6"
+				cols="33" value="#{solicitarTutoriaBean.tutoria.tema}" />
+			<p:message for="tema" display="icon" />
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<h:outputLabel> Lugar: </h:outputLabel>
+			<p:inputText id="lugar" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="2">
+			<p:commandButton value="Guardar"
+				actionListener="#{solicitarTutoriaBean.solicitar()}"
+				update="formTutorias" />
+			<p:commandButton value="Cancelar"
+				action="#{solicitarTutoriaBean.cancelar()}" />
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

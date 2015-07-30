@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Lista de Tutorias</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet name="estilo.css"></h:outputStylesheet>
+	<div align="center">
+		<h2>
+			<font color="#000000"><em><font
+					face="Geneva, Arial, Helvetica, sans-serif" size="5">Lista
+						de Tutorias </font> </em> </font>
+		</h2>
+	</div>
+	<h:form>
+		<p:menubar>
+			<p:submenu label="Gestion Tutoria" icon="ui-icon-contact"
+				style="width:auto;">
+				<p:menuitem value="Solicitar Tutoria"
+					url="/GestionTutoria/solicitarTutoria.jsf" icon="ui-icon-document"
+					style="width:auto;" />
+				<p:menuitem value="Listar TutoriaS"
+					url="/GestionTutoria/listarSolicitudes.jsf" icon="ui-icon-bookmark"
+					style="width:auto;" />
+			</p:submenu>
+			<p:submenu label="Gestionar Usuario" icon="ui-icon-person"
+				style="width:auto;">
+			</p:submenu>
+			<p:submenu label="Gestionar Departamento" icon="ui-icon-person"
+				style="width:auto;">
+			</p:submenu>
+		</p:menubar>
+		
+		<p:dataTable id="tablaSolicitudes" value="#{listarSolicitudesBean.tutorias}"
+			var="tutoria" title="Tabla de Tutorias" style="width:auto;">
+			<p:column headerText="Fecha">
+				<h:outputText value="#{tutoria.fecha}" />
+			</p:column>
+			<p:column headerText="Hora de Inicio">
+				<h:outputText value="#{tutoria.horaInicio}" />
+			</p:column>
+			<p:column headerText="Hora de Fin">
+				<h:outputText value="#{tutoria.horaFin}" />
+			</p:column>
+			<p:column headerText="Tema">
+				<h:outputText value="#{tutoria.tema}" />
+			</p:column>
+			<p:column headerText="Profesor">
+				<h:outputText value="#{tutoria.profesor}" />
+			</p:column>
+			<p:column headerText="Estudiante">
+				<h:outputText value="#{tutoria.estudiante}" />
+			</p:column>
+			<!--  <p:column headerText="Opciones"
+				style="text-align: center; width: 100px">
+				<p:commandButton id="botonEdicion" icon="ui-icon-pencil">
+				</p:commandButton>
+				<p:commandButton id="botonEliminar" icon="ui-icon-closethick"
+					ajax="#{false}">
+				</p:commandButton>
+			</p:column>-->
+		</p:dataTable>
+		
+	</h:form>
+</h:body>
+<h:outputStylesheet name="css/estilo.css" />
+</html>
